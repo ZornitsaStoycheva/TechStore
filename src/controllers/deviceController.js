@@ -11,6 +11,11 @@ router.get('/:deviceId/details', async (req, res) => {
     res.render('devices/details', { device })
 })
 
+router.get('/:deviceId/delete', async (req, res) => {
+    await deviceService.del(req.params.deviceId).lean();
+    res.render('devices/catalog')
+})
+
 router.get('/create', (req, res) => {
     res.render('devices/create')
 })

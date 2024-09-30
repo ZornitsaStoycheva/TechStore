@@ -1,4 +1,6 @@
+{{#if devices}}
 {{#each devices}}
+
 <div class="product-item">
                     <img
                         src="{{image}}">
@@ -12,3 +14,4 @@
 {{else}}
 <p class="no-post">There haven't been any devices posted yet.</p>
 {{/each}}
+{{/if}}

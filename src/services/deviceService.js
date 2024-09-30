@@ -14,3 +14,5 @@ exports.create = async (deviceData) => {
 
     return device;
 }
+
+exports.del = (deviceId) => Device.findByIdAndDelete(deviceId);
