@@ -9,7 +9,9 @@ exports.getOneById = (deviceId) => Device.findById(deviceId);
 
 exports.getOne = (deviceId) => Device.findById(deviceId).populate('owner').populate('preferredList');
 
-exports.getAllByPreferredList = () => Device.find().populate('preferredList');
+exports.getAllByPreferredList =  (userId) => Device.find({ preferredList: userId});
+
+exports.getCreatedItem = (userId) => Device.find({ owner: userId});
 
 exports.create = async (deviceData, userId) => {
     const device = await Device.create({

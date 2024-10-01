@@ -46,10 +46,9 @@ router.get('/logout', (req, res) => {
 
 router.get('/profile', async (req, res) => {
     const user = await authService.profile(req.user._id);
-    const device = await deviceService.getAllByPreferredList().lean();
-    const isPreferred = device.preferredList.some(x => x._id == user?._id);
-    console.log(isPreferred)
-    res.render('auth/profile', isPreferred, user)
+    const prefer = await deviceService.getAllByPreferredList(req.user._id).lean();
+    const created = await deviceService.getCreatedItem(req.user._id).lean();
+    res.render('auth/profile', { created, prefer, ...user})
 })
 
 module.exports = router;

@@ -10,7 +10,7 @@ router.get('/catalog', async (req, res) => {
 
 router.get('/:deviceId/details', async (req, res) => {
     const device = await deviceService.getOne(req.params.deviceId).lean();
-    const isOwner = device.owner._id == req.user?._id;
+    const isOwner = device.owner?._id == req.user?._id;
     const isPreferredList = device.preferredList.some(x => x._id == req.user?._id)
     const isAuthenticated = !!req.user;
     res.render('devices/details', { isOwner, isAuthenticated, isPreferredList, device })
