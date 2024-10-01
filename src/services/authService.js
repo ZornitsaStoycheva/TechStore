@@ -41,6 +41,8 @@ exports.login = async (email, password) => {
     return token;
 }
 
+exports.profile = (userId) => User.findById(userId);
+
 function generationToken(user) {
     const payload = {
         _id: user.id,

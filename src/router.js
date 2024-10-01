@@ -5,6 +5,6 @@ const authController = require('./controllers/authController');
 
 router.use(homeController);
 router.use('/devices', deviceController);
-router.use('/auth', authController);
+router.use(authController);
 
 module.exports = router;

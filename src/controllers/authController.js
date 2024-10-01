@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { isGuest } = require('../middlewares/authMiddleware');
 const authService = require('../services/authService');
+const deviceService = require('../services/deviceService');
 const { getErrorMessage } = require('../utils/errorUtil');
 
 router.get('/register', isGuest, (req, res) => {
@@ -41,6 +42,14 @@ router.post('/login', isGuest, async (req, res) => {
 router.get('/logout', (req, res) => {
     res.clearCookie('auth');
     res.redirect('/');
+})
+
+router.get('/profile', async (req, res) => {
+    const user = await authService.profile(req.user._id);
+    const device = await deviceService.getAllByPreferredList().lean();
+    const isPreferred = device.preferredList.some(x => x._id == user?._id);
+    console.log(isPreferred)
+    res.render('auth/profile', isPreferred, user)
 })
 
 module.exports = router;
