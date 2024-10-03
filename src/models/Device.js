@@ -36,13 +36,13 @@ const deviceSchema = mongoose.Schema({
         type: String,
         required: [true, 'Cpu is required!'],
         minLength: [5, 'Cpu should be 5 characters!'],
-        maxLength: [50, 'Cpu should be 10 characters!']
+        maxLength: [50, 'Cpu should be 50 characters!']
     },
     gpu: {
         type: String,
         required: [true, 'Gpu is required!'],
         minLength: [5, 'Gpu should be 5 characters!'],
-        maxLength: [10, 'Gpu should be 10 characters!']
+        maxLength: [50, 'Gpu should be 50 characters!']
     },
     price: {
         type: Number,
